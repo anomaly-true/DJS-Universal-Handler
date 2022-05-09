@@ -11,12 +11,12 @@ function exec(client, interaction) {}
 class Interaction {
     /**
      * 
-     * @typedef {{name: string, type: "PING" | "MESSAGE_COMPONENT" | "APPLICATION_COMMAND_AUTOCOMPLETE", execute: exec}} InteractionOptions
+     * @typedef {{name: string, check: "isApplicationCommand" | "isCommand" | "isContextMenu" | "isUserContextMenu" | "isMessageContextMenu" | "isAutocomplete" | "isMessageComponent" | "isButton" | "isSelectMenu", execute: exec}} InteractionOptions
      * @param {InteractionOptions} options 
      */
     constructor(options) {
         this.name = options.name;
-        this.type = options.type;
+        this.check = options.check;
         this.execute = options.execute;
     }
 }

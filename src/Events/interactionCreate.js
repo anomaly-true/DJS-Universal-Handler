@@ -54,8 +54,14 @@ module.exports = new event("interactionCreate",
         }
     } else {
         const int = client.interactions.get(interaction.customId)
-        if (int && int.type === interaction.type) {
-            int.execute(client, interaction); // Didnt actually test this...
+        if (int && interaction[int.check]()) {
+            try {
+                int.execute(client, interaction); // Didnt actually test this...
+            } catch (err) {
+                console.log(`\x1b[31m[ERR]\x1b[0m   | ${err}`);
+                interaction.reply({content: "An error occured while trying to trying to process the interaction.", ephemeral: true});
+            }
+            
         }
     }
 })
