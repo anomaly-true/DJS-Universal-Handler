@@ -1,4 +1,7 @@
 {
     "Token": "",
-    "Version": "1.0"
+    "Version": "1.0",
+    "Slash_Guild_Mode": false,
+    "Slash_Guild_Mode_Guild_ID": "",
+    "clientId": ""
 }

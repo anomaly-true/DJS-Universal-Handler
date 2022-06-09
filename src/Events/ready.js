@@ -1,10 +1,7 @@
 const event = require("../Structures/Event.js");
-const { Token } = require("../Config/discord.json");
+const { Token, Slash_Guild_Mode, Slash_Guild_Mode_Guild_ID, clientId } = require("../Config/discord.json");
 const { REST } = require("@discordjs/rest");
 
-const clientID = "972270809135603732"
-const guildID = "961553935062159360"
-const guildMode = true;
 module.exports = new event("ready", async(client) => {
     console.log("\x1b[32m[BOT]\x1b[0m   | Ready!");
     const commands = [];
@@ -15,14 +12,14 @@ module.exports = new event("ready", async(client) => {
     try {
         console.log("\x1b[32m[CMD]\x1b[0m   | Refreshing slash commands");
         let data;
-        if (guildMode) {
+        if (Slash_Guild_Mode) {
             data = await rest.put(
-                `/applications/${clientID}/guilds/${guildID}/commands`,
+                `/applications/${clientId}/guilds/${Slash_Guild_Mode_Guild_ID}/commands`,
                 { body: commands}
             );
         } else {
-            data = rest.put(
-                `/applications/${guildID}/commands`,
+            data = await rest.put(
+                `/applications/${clientId}/commands`,
                 { body: commands}
             )
         }
